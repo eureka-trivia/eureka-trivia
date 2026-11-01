@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eureka! Trivia #001 — World Capitals</title>
+<meta name="description" content="No Googling! Can you name the capitals of these 10 countries? Reveal answers, discover fun facts, and score yourself.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eureka! Trivia #001 — The World Capitals Challenge">
+<meta property="og:description" content="No Googling! Test your knowledge of 10 world capitals, reveal fun facts, and see your score.">
+<meta property="og:image" content="https://eureka-trivia.github.io/eureka-trivia/trivia-preview.png">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
+<style>
+:root{--navy:#0b1935;--blue:#142c57;--gold:#ffd16a;--cream:#fff9ed;--muted:#b7c7e3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#264b7d 0%,#0b1935 48%,#070f22 100%);color:white;font-family:system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+main{max-width:820px;margin:auto;padding:28px 18px 65px}.hero{text-align:center;padding:28px 12px 22px}.badge{display:inline-block;border:1px solid #a98a4d;border-radius:30px;color:var(--gold);padding:8px 18px;letter-spacing:2px;font-weight:800;font-size:.75rem}.logo{font-size:clamp(2.6rem,8vw,4.5rem);font-weight:1000;letter-spacing:1px;margin:13px 0 0;color:var(--gold);text-shadow:0 4px 25px #0009}.logo span{color:white}.hero h1{font-size:clamp(1.4rem,5vw,2.1rem);margin:8px 0}.hero p{color:var(--muted);line-height:1.6;margin:10px auto;max-width:560px}.rules{background:#ffffff12;border:1px solid #ffffff25;border-radius:16px;padding:16px 18px;margin:18px 0 24px;color:#e5eaf6}.rules strong{color:var(--gold)}.progress{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:13px;color:var(--gold);font-weight:750}.bar{height:8px;border-radius:9px;background:#ffffff25;overflow:hidden;margin-bottom:20px}.fill{height:100%;width:0;background:linear-gradient(90deg,#e0a93e,#ffe2a0);transition:width .25s}.card{background:linear-gradient(125deg,#1a3563,#112444);border:1px solid #47618c;border-radius:17px;padding:21px;margin-bottom:15px;box-shadow:0 9px 23px #0003}.top{display:flex;align-items:center;gap:13px}.num{background:#eac16b;color:#14223d;font-weight:900;border-radius:11px;padding:9px 11px;min-width:46px;text-align:center}.country{font-size:1.25rem;font-weight:800}.prompt{font-size:.87rem;color:#c8d7f0;margin-top:3px}.reveal{background:var(--gold);border:0;color:#14213a;border-radius:10px;padding:12px 17px;font-weight:850;cursor:pointer;margin-top:16px;font-size:.95rem}.reveal:hover{background:#ffe5a5}.answer{display:none;border-top:1px solid #ffffff35;margin-top:18px;padding-top:17px}.answer.visible{display:block}.answer h3{color:var(--gold);font-size:1.4rem;margin:2px 0 12px}.fact{background:#fff8e8;color:#26354c;padding:14px;border-radius:10px;line-height:1.55}.fact strong{color:#805408}.grade{margin-top:15px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}.grade-label{color:#d5e0f1;font-size:.88rem;margin-right:5px}.grade button{border:1px solid #8da6ce;border-radius:9px;padding:9px 13px;background:transparent;color:white;cursor:pointer;font-weight:700}.grade button.selected{background:#b8edc5;color:#133621;border-color:#b8edc5}.grade button.wrong.selected{background:#ffcad0;color:#5e1925;border-color:#ffcad0}.scorebox{text-align:center;background:linear-gradient(135deg,#f7d17d,#e8a842);color:#17233d;border-radius:18px;padding:24px 15px;margin-top:24px}.scorebox h2{margin:0 0 8px}.score{font-size:3.1rem;font-weight:950}.small{font-size:.85rem;line-height:1.5}.footer{text-align:center;color:#b4c4df;font-size:.83rem;margin-top:30px}.reset{background:#152f58;color:white;border:1px solid #9f7c3c;padding:10px 17px;border-radius:10px;cursor:pointer;font-weight:700;margin-top:10px}button:focus-visible{outline:3px solid white;outline-offset:3px}
+</style>
+</head>
+<body><main>
+<header class="hero"><div class="badge">CHALLENGE #001 · GEOGRAPHY</div><div class="logo">💡 EUREKA! <span>TRIVIA</span></div><h1>🌍 The World Capitals Challenge</h1><p>Test Your Knowledge. Discover Something New!</p></header>
+<section class="rules"><strong>🚫 No Googling!</strong> First, name the capital of each country. Then reveal its answer, discover a <strong>FUN FACT 💡</strong>, and mark whether you got it right. Your score updates automatically!</section>
+<div class="progress"><span id="count">0 of 10 answers revealed</span><span id="gradeCount">0 scored</span></div><div class="bar"><div class="fill" id="fill"></div></div>
+<div id="questions"></div>
+<section class="scorebox" aria-live="polite"><h2>🏆 YOUR SCORE</h2><div class="score" id="score">0 / 10</div><div id="message">Reveal the answers and mark your results!</div><button class="reset" id="reset">↻ Start Over</button></section>
+<div class="footer">💡 EUREKA! TRIVIA · Test Your Knowledge. Discover Something New!<br>Share your score in the comments on our Facebook challenge.</div>
+</main>
+<script>
+const data=[
+["🇨🇦","Canada","Ottawa","Ottawa was selected as the capital in 1857 by Queen Victoria, partly because of its location between English- and French-speaking regions."],
+["🇦🇺","Australia","Canberra","Canberra was chosen as a compromise between rivals Sydney and Melbourne, and was purpose-built as the national capital."],
+["🇧🇷","Brazil","Brasília","Brasília replaced Rio de Janeiro as Brazil's capital in 1960. Its striking modernist architecture is a UNESCO World Heritage Site."],
+["🇯🇵","Japan","Tokyo","Tokyo was once called Edo. The name Tokyo means “Eastern Capital.”"],
+["🇲🇳","Mongolia","Ulaanbaatar (also accepted: Ulan Bator)","Ulaanbaatar is among the coldest national capitals in the world, with extremely cold winters. Its name means “Red Hero.”"],
+["🇩🇪","Germany","Berlin","Berlin became the capital of reunified Germany in 1990, but many federal government functions moved there from Bonn only later."],
+["🇪🇬","Egypt","Cairo","Cairo is near the ancient pyramids of Giza, but the pyramids were built long before Cairo was founded."],
+["🇹🇭","Thailand","Bangkok","Bangkok's ceremonial full name is famously long; locals commonly call the city Krung Thep."],
+["🇲🇽","Mexico","Mexico City","Mexico City was built on the site of Tenochtitlan, the former capital of the Aztec Empire."],
+["🇳🇿","New Zealand","Wellington","Wellington replaced Auckland as the capital in 1865, partly because of its more central location."]
+];
+const grades=Array(10).fill(null),revealed=Array(10).fill(false);
+const root=document.getElementById('questions');
+data.forEach((d,i)=>{
+const el=document.createElement('article');el.className='card';
+el.innerHTML=`<div class="top"><div class="num">${String(i+1).padStart(2,'0')}</div><div><div class="country">${d[0]} ${d[1]}</div><div class="prompt">What is the capital?</div></div></div><button class="reveal" aria-expanded="false" aria-controls="answer${i}">🔓 Reveal Answer</button><div class="answer" id="answer${i}"><h3>✓ ${d[2]}</h3><div class="fact"><strong>💡 FUN FACT!</strong><br>${d[3]}</div><div class="grade"><span class="grade-label">Did you get it right?</span><button class="right" aria-pressed="false">✓ I got it!</button><button class="wrong" aria-pressed="false">✗ Not this time</button></div></div>`;
+root.appendChild(el);
+const reveal=el.querySelector('.reveal'),answer=el.querySelector('.answer');
+reveal.addEventListener('click',()=>{revealed[i]=true;answer.classList.add('visible');reveal.textContent='✓ Answer Revealed';reveal.setAttribute('aria-expanded','true');reveal.disabled=true;update()});
+el.querySelectorAll('.grade button').forEach(btn=>btn.addEventListener('click',()=>{grades[i]=btn.classList.contains('right');el.querySelectorAll('.grade button').forEach(b=>{const selected=(b===btn);b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected))});update()}));
+});
+function update(){let r=revealed.filter(Boolean).length,g=grades.filter(x=>x!==null).length,s=grades.filter(x=>x===true).length;document.getElementById('count').textContent=`${r} of 10 answers revealed`;document.getElementById('gradeCount').textContent=`${g} scored`;document.getElementById('fill').style.width=`${r*10}%`;document.getElementById('score').textContent=`${s} / 10`;document.getElementById('message').textContent=g===10?(s===10?'Perfect score! You are a trivia champion! 🎉':s>=7?'Excellent work, geography whiz! 🌟':s>=4?'Nice effort! You learned something new! 💡':'Every expert starts somewhere. Keep exploring! 🌍'):`${g} of 10 questions scored · Share your final score on Facebook!`}
+document.getElementById('reset').addEventListener('click',()=>location.reload());
+</script></body></html>
